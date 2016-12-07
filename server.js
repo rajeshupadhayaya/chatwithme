@@ -17,6 +17,12 @@ var http = require('http').createServer(app);
 var client = require('socket.io')(http);
 var mongo = require('mongodb');
 
+var mongoUrl = process.env.MONGODB_URI || 'mongodb://127.0.0.1/chat'
+// if process.env.MONGODB_URI:
+    // var mongoUrl = process.env.MONGODB_URI
+// else 
+	// mongoUrl = mongodb://127.0.0.1/chat
+
 app.use(express.static(__dirname + '/node_modules'));
 app.use(express.static(__dirname  ));
 
@@ -26,8 +32,10 @@ app.get('/', function(req, res){
    
 });
 
+
  
-mongo.connect('mongodb://127.0.0.1/chat',function(err, db){
+mongo.connect(mongoUrl,function(err, db){
+
 	if (err) throw err;
 	client.on('connection', function(socket){
 		//console.log('a user connected');

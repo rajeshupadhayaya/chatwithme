@@ -17,6 +17,8 @@ var http = require('http').createServer(app);
 var client = require('socket.io')(http);
 var mongo = require('mongodb');
 
+app.set('port', (process.env.PORT || 8080));
+
 var mongoUrl = process.env.MONGODB_URI || 'mongodb://127.0.0.1/chat'
 // if process.env.MONGODB_URI:
     // var mongoUrl = process.env.MONGODB_URI
@@ -76,6 +78,6 @@ mongo.connect(mongoUrl,function(err, db){
 })
 
 
-http.listen(80, function(){
-  console.log('server started.....');
+http.listen(app.get('port'), function(){
+  console.log('server started.....', app.get('port'));
 });

@@ -76,6 +76,6 @@ mongo.connect(mongoUrl,function(err, db){
 })
 
 
-http	.listen(8080, function(){
+http.listen(80, function(){
   console.log('server started.....');
 });

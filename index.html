@@ -23,6 +23,7 @@
 			messages = getNode('.chat-messages'),
 			textarea = getNode('.chat textarea'),
 			chatName = getNode('.chat-name');
+			var url
 			
 			statusDefualt = status.textContent;
 			setStatus = function(s){
@@ -38,7 +39,7 @@
 			
 			<!-- setStatus('testing'); -->
 			try{
-				var socket = io.connect('http://127.0.0.1:8080');
+				var socket = io.connect();
 			}catch(e){
 				//set status to the user
 				console.log('error');
